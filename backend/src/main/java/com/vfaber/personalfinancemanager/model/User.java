@@ -1,7 +1,9 @@
 package com.vfaber.personalfinancemanager.model;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.util.List;
@@ -9,13 +11,15 @@ import java.util.Set;
 
 @Setter
 @Getter
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name = "users")
 public class User {
 
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private String username;
     private String password;
@@ -24,10 +28,7 @@ public class User {
     private String email;
     private String profileInformation;
 
-    @ManyToMany
-    @JoinTable(name = "user_role",
-            joinColumns = {@JoinColumn(name = "user_id")},
-            inverseJoinColumns = {@JoinColumn(name = "role_id")})
+    @Enumerated(EnumType.STRING)
     private Set<Role> roles;
     @OneToMany(mappedBy = "user")
     private List<Account> accounts;
