@@ -1,6 +1,6 @@
 package com.vfaber.personalfinancemanager.model;
 
-public enum Role {
+public enum RoleEnum {
     USER,
     ADMIN;
 }

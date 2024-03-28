@@ -29,7 +29,7 @@ public class User {
     private String profileInformation;
 
     @Enumerated(EnumType.STRING)
-    private Set<Role> roles;
+    private Set<RoleEnum> roles;
     @OneToMany(mappedBy = "user")
     private List<Account> accounts;
     @OneToMany(mappedBy = "user")
