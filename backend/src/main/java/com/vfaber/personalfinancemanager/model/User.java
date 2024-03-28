@@ -4,7 +4,6 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
@@ -20,6 +19,8 @@ public class User {
     private long id;
     private String username;
     private String password;
+    private String firstName;
+    private String lastName;
     private String email;
     private String profileInformation;
 
