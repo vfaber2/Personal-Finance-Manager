@@ -1,9 +1,10 @@
-Personal Project
+# Personal Project
 
-Frontend:
-Sveltekit
-Tailwind
-Backend:
-Spring
+## Frontend:
+- Sveltekit
+- Tailwind
+
+## Backend:
+- Spring
 
 
