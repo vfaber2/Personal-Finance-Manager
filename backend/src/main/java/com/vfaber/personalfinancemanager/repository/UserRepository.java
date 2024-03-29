@@ -1,6 +1,6 @@
 package com.vfaber.personalfinancemanager.repository;
 
-import com.vfaber.personalfinancemanager.model.User;
+import com.vfaber.personalfinancemanager.model.UserEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -8,14 +8,15 @@ import java.util.List;
 import java.util.Optional;
 
 @Repository
-public interface UserRepository extends JpaRepository<User, Long> {
+public interface UserRepository extends JpaRepository<UserEntity, String> {
 
-    Optional<List<User>> findUsersByFirstName(String firstName);
+    Optional<List<UserEntity>> findUsersByFirstName(String firstName);
 
-    Optional<List<User>> findUsersByLastName(String lastName);
+    Optional<List<UserEntity>> findUsersByLastName(String lastName);
 
-    Optional<User> findUserByUsername(String username);
+    Optional<UserEntity> findUserByUsername(String username);
 
-    Optional<User> findUserByEmail(String email);
+    Optional<UserEntity> findUserByEmail(String email);
+
 
 }

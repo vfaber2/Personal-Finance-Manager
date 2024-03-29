@@ -13,19 +13,18 @@ import java.util.Date;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "transactions")
-public class Transaction {
+@Table(name = "goals")
+public class GoalEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    private Date date;
-    private float amount;
-    private String type;
+    private String name;
+    private float targetAmount;
+    private float currentAmount;
+    private Date targetDate;
     @ManyToOne
-    @JoinColumn(name = "account_id", referencedColumnName = "id")
-    private Account account;
-    @ManyToOne
-    @JoinColumn(name = "category_id", referencedColumnName = "id")
-    private Category category;
+    @JoinColumn(name = "userEntity_id")
+    private UserEntity userEntity;
+
 
 }

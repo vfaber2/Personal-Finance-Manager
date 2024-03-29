@@ -13,16 +13,20 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "categories")
-public class Category {
+@Table(name = "accounts")
+public class AccountEntity {
+
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    private String name;
-    private String description;
+    @ManyToOne
+    @JoinColumn(name = "userEntity_id")
+    private UserEntity userEntity;
+    private String accountType;
+    private float balance;
 
-    @OneToMany(mappedBy = "category")
-    private List<Transaction> transactions;
-
+    @OneToMany(mappedBy = "accountEntity", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<TransactionEntity> transactionEntities;
 
 }

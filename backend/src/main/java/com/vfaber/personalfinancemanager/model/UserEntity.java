@@ -15,12 +15,9 @@ import java.util.Set;
 @AllArgsConstructor
 @Entity
 @Table(name = "users")
-public class User {
-
+public class UserEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
     private String username;
     private String password;
     private String firstName;
@@ -30,11 +27,11 @@ public class User {
 
     @Enumerated(EnumType.STRING)
     private Set<RoleEnum> roles;
-    @OneToMany(mappedBy = "user")
-    private List<Account> accounts;
-    @OneToMany(mappedBy = "user")
-    private List<Budget> budgets;
-    @OneToMany(mappedBy = "user")
-    private List<Goal> goals;
+    @OneToMany(mappedBy = "userEntity", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<AccountEntity> accountEntities;
+    @OneToMany(mappedBy = "userEntity", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<BudgetEntity> budgetEntities;
+    @OneToMany(mappedBy = "userEntity", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<GoalEntity> goalEntities;
 
 }

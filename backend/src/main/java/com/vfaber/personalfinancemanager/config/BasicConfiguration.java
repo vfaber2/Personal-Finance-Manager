@@ -37,11 +37,11 @@ public class BasicConfiguration {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers(AntPathRequestMatcher.antMatcher("/h2-console/**")).permitAll()
+                        .requestMatchers(AntPathRequestMatcher.antMatcher("/**")).permitAll()
                 )
                 .headers(headers -> headers.frameOptions().disable())
                 .csrf(csrf -> csrf
-                        .ignoringRequestMatchers(AntPathRequestMatcher.antMatcher("/h2-console/**")));
+                        .ignoringRequestMatchers(AntPathRequestMatcher.antMatcher("/**")));
         return http.build();
     }
 

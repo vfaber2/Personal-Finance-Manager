@@ -1,8 +1,8 @@
 package com.vfaber.personalfinancemanager.repository;
 
-import com.vfaber.personalfinancemanager.model.Budget;
-import com.vfaber.personalfinancemanager.model.Category;
-import com.vfaber.personalfinancemanager.model.User;
+import com.vfaber.personalfinancemanager.model.BudgetEntity;
+import com.vfaber.personalfinancemanager.model.CategoryEntity;
+import com.vfaber.personalfinancemanager.model.UserEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -11,15 +11,15 @@ import java.util.List;
 import java.util.Optional;
 
 @Repository
-public interface BudgetRepository extends JpaRepository<Budget, Long> {
+public interface BudgetRepository extends JpaRepository<BudgetEntity, Long> {
 
-    Optional<List<Budget>> findBudgetsByUser(User user);
+    Optional<List<BudgetEntity>> findBudgetsByUserEntity(UserEntity userEntity);
 
-    Optional<Budget> findBudgetByUserAndId(User user, Long id);
+    Optional<BudgetEntity> findBudgetByUserEntityAndId(UserEntity userEntity, Long id);
 
-    Optional<List<Budget>> findBudgetsByStartDate(Date startDate);
+    Optional<List<BudgetEntity>> findBudgetsByStartDate(Date startDate);
 
-    Optional<List<Budget>> findBudgetsByEndDate(Date endDate);
+    Optional<List<BudgetEntity>> findBudgetsByEndDate(Date endDate);
 
-    Optional<List<Budget>> findBudgetsByCategory(Category category);
+    Optional<List<BudgetEntity>> findBudgetsByCategoryEntity(CategoryEntity categoryEntity);
 }
