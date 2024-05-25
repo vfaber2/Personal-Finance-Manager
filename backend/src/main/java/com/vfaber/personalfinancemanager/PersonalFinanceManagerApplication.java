@@ -1,9 +1,9 @@
-package com.vfaber.personalfinancemanager;
+package com.vfaber.personalFinanceManager;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-@SpringBootApplication(scanBasePackages = {"com.vfaber.personalfinancemanager"})
+@SpringBootApplication
 public class PersonalFinanceManagerApplication {
 
 	public static void main(String[] args) {
