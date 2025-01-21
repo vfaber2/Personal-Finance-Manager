@@ -2,6 +2,8 @@ version = 1
 
 [[analyzers]]
 name = "java"
+name = "test-coverage"
+enabled = true
 
-  [analyzers.meta]
-  runtime_version = "19"
+[analyzers.meta]
+runtime_version = "19"
