@@ -18,7 +18,7 @@ import java.util.List;
 public class UserControllerImpl implements UserController {
 
     private final UserRepository userRepository;
-    private Mapper mapper;
+    private final Mapper mapper = new Mapper();
 
     @PostMapping("/addUser")
     @Override

@@ -15,7 +15,7 @@ import java.util.UUID;
 @Setter
 public class AccountEntity {
     @Id
-    private final UUID uuid;
+    private UUID uuid;
     @Column(unique = true)
     private String IBAN;
 

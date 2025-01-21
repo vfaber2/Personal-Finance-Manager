@@ -17,14 +17,14 @@ import java.util.UUID;
 @Setter
 public class TransactionEntity {
     @Id
-    private final UUID transactionId;
-    private final double amount;
+    private UUID transactionId;
+    private double amount;
     @ManyToOne
     @JoinColumn(name = "account_from")
-    private final AccountEntity accountFrom;
+    private AccountEntity accountFrom;
     @ManyToOne
     @JoinColumn(name = "account_to")
-    private final AccountEntity accountTo;
+    private AccountEntity accountTo;
 
 
     @Override
