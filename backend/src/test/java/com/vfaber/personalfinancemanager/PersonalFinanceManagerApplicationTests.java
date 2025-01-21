@@ -1,4 +1,4 @@
-package com.vfaber.personalFinanceManager;
+package com.vfaber.personalfinancemanager;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
