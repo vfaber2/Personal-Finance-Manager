@@ -2,7 +2,6 @@ version = 1
 
 [[analyzers]]
 name = "java"
-name = "test-coverage"
 enabled = true
 
 [analyzers.meta]
