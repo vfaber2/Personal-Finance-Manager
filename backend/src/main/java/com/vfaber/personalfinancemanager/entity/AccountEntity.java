@@ -1,4 +1,4 @@
-package com.vfaber.personalFinanceManager.entity;
+package com.vfaber.personalfinancemanager.entity;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;

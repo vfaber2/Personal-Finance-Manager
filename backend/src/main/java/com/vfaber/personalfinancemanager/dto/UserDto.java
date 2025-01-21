@@ -1,4 +1,4 @@
-package com.vfaber.personalFinanceManager.dto;
+package com.vfaber.personalfinancemanager.dto;
 
 import lombok.Data;
 

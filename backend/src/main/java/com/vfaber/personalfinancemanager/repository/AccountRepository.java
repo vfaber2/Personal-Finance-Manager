@@ -1,7 +1,7 @@
-package com.vfaber.personalFinanceManager.repository;
+package com.vfaber.personalfinancemanager.repository;
 
-import com.vfaber.personalFinanceManager.entity.AccountEntity;
-import com.vfaber.personalFinanceManager.entity.UserEntity;
+import com.vfaber.personalfinancemanager.entity.AccountEntity;
+import com.vfaber.personalfinancemanager.entity.UserEntity;
 import org.springframework.data.repository.CrudRepository;
 
 import java.util.Optional;

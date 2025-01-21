@@ -1,10 +1,10 @@
-package com.vfaber.personalFinanceManager.controller.Impl;
+package com.vfaber.personalfinancemanager.controller.impl;
 
-import com.vfaber.personalFinanceManager.controller.UserController;
-import com.vfaber.personalFinanceManager.dto.UserDto;
-import com.vfaber.personalFinanceManager.entity.UserEntity;
-import com.vfaber.personalFinanceManager.exceptions.UsernameNotFoundException;
-import com.vfaber.personalFinanceManager.repository.UserRepository;
+import com.vfaber.personalfinancemanager.controller.UserController;
+import com.vfaber.personalfinancemanager.dto.UserDto;
+import com.vfaber.personalfinancemanager.exceptions.UsernameNotFoundException;
+import com.vfaber.personalfinancemanager.repository.UserRepository;
+import com.vfaber.personalfinancemanager.service.Mapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -18,6 +18,7 @@ import java.util.List;
 public class UserControllerImpl implements UserController {
 
     private final UserRepository userRepository;
+    private Mapper mapper;
 
     @PostMapping("/addUser")
     @Override
@@ -25,7 +26,7 @@ public class UserControllerImpl implements UserController {
         if (userRepository.findByUsername(userDto.getUsername()).isPresent()) {
             return ResponseEntity.notFound().build();
         }
-        userRepository.save(convertUserEntityFromUserDto(userDto));
+        userRepository.save(mapper.dtoToEntity(userDto));
         return ResponseEntity.ok().build();
     }
 
@@ -35,7 +36,7 @@ public class UserControllerImpl implements UserController {
 
         if (userRepository.findByUsername(userDto.getUsername()).isEmpty()) return ResponseEntity.notFound().build();
 
-        userRepository.save(convertUserEntityFromUserDto(userDto));
+        userRepository.save(mapper.dtoToEntity(userDto));
 
         return ResponseEntity.ok().build();
     }
@@ -54,7 +55,7 @@ public class UserControllerImpl implements UserController {
     @Override
     public ResponseEntity<UserDto> getUser(@PathVariable String username) {
         try {
-            UserDto userDto = convertUserEntityToUserDto(
+            UserDto userDto = mapper.entityToDto(
                     userRepository.findByUsername(username).orElseThrow(() -> new UsernameNotFoundException(username))
             );
             return ResponseEntity.ok(userDto);
@@ -68,30 +69,8 @@ public class UserControllerImpl implements UserController {
     public ResponseEntity<List<UserDto>> getAllUsers() {
         List<UserDto> userDtos = new ArrayList<>();
 
-        userRepository.findAll().stream().map(this::convertUserEntityToUserDto).forEach(userDtos::add);
+        userRepository.findAll().stream().map(mapper::entityToDto).forEach(userDtos::add);
 
         return ResponseEntity.ok(userDtos);
-    }
-
-    private UserDto convertUserEntityToUserDto(UserEntity userEntity) {
-        UserDto userDto = new UserDto();
-        userDto.setId(userEntity.getId());
-        userDto.setUsername(userEntity.getUsername());
-        userDto.setPassword(userEntity.getPassword());
-        userDto.setFirstName(userEntity.getFirstName());
-        userDto.setLastName(userEntity.getLastName());
-        userDto.setEmail(userEntity.getEmail());
-        return userDto;
-    }
-
-    private UserEntity convertUserEntityFromUserDto(UserDto userDto) {
-        UserEntity userEntity = new UserEntity();
-        userEntity.setId(userDto.getId());
-        userEntity.setUsername(userDto.getUsername());
-        userEntity.setPassword(userDto.getPassword());
-        userEntity.setFirstName(userDto.getFirstName());
-        userEntity.setLastName(userDto.getLastName());
-        userEntity.setEmail(userDto.getEmail());
-        return userEntity;
     }
 }

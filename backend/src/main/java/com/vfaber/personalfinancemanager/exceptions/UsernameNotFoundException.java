@@ -1,4 +1,4 @@
-package com.vfaber.personalFinanceManager.exceptions;
+package com.vfaber.personalfinancemanager.exceptions;
 
 public class UsernameNotFoundException extends RuntimeException {
     public UsernameNotFoundException() {
