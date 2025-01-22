@@ -16,4 +16,6 @@ public interface TransactionRepository extends CrudRepository<TransactionEntity,
 
     Optional<List<TransactionEntity>> findAllByAccountTo(AccountEntity accountTo);
 
+    List<TransactionEntity> findAll();
+
 }
