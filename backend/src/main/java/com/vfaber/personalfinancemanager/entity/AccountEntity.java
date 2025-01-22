@@ -1,10 +1,7 @@
 package com.vfaber.personalfinancemanager.entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.util.UUID;
 
@@ -13,6 +10,7 @@ import java.util.UUID;
 @AllArgsConstructor
 @Getter
 @Setter
+@Builder
 public class AccountEntity {
     @Id
     private UUID uuid;
@@ -24,5 +22,7 @@ public class AccountEntity {
     private UserEntity accountHolder;
 
     private double balance;
+
+
 
 }
