@@ -36,26 +36,31 @@ class TransferControllerTest {
     void setUp() {
         accountRepository.deleteAll();
 
-        accountFrom = new AccountEntity();
-        accountFrom.setUuid(UUID.randomUUID());
-        accountFrom.setIBAN("DE12345678901234567890");
-        accountFrom.setBalance(1000.00);
-        accountRepository.save(accountFrom);
+        // Initialize test accounts using Builder Pattern
+        accountFrom = AccountEntity.builder()
+                .uuid(UUID.randomUUID())
+                .IBAN("DE12345678901234567890")
+                .balance(1000.00)
+                .build();
+        accountFrom = accountRepository.save(accountFrom);
 
-        accountTo = new AccountEntity();
-        accountTo.setUuid(UUID.randomUUID());
-        accountTo.setIBAN("DE09876543210987654321");
-        accountTo.setBalance(500.00);
-        accountRepository.save(accountTo);
+        accountTo = AccountEntity.builder()
+                .uuid(UUID.randomUUID())
+                .IBAN("DE09876543210987654321")
+                .balance(500.00)
+                .build();
+        accountTo = accountRepository.save(accountTo);
     }
 
     @Test
     void testSuccessfulTransfer() throws Exception {
+        // Arrange
         TransferRequestDto transferRequest = new TransferRequestDto();
         transferRequest.setAccountFromId(accountFrom.getUuid());
         transferRequest.setAccountToId(accountTo.getUuid());
         transferRequest.setAmount(200.00);
 
+        // Act & Assert
         mockMvc.perform(post("/api/transaction/performTransaction")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(transferRequest)))
@@ -64,11 +69,13 @@ class TransferControllerTest {
 
     @Test
     void testTransferInsufficientFunds() throws Exception {
+        // Arrange
         TransferRequestDto transferRequest = new TransferRequestDto();
         transferRequest.setAccountFromId(accountFrom.getUuid());
         transferRequest.setAccountToId(accountTo.getUuid());
         transferRequest.setAmount(1200.00);
 
+        // Act & Assert
         mockMvc.perform(post("/api/transaction/performTransaction")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(transferRequest)))

@@ -38,16 +38,18 @@ class TransferServiceImplTest {
     void setUp() {
         MockitoAnnotations.openMocks(this);
 
-        // Initialize test accounts
-        accountFrom = new AccountEntity();
-        accountFrom.setUuid(UUID.randomUUID());
-        accountFrom.setIBAN("DE12345678901234567890");
-        accountFrom.setBalance(1000.00);
+        // Initialize test accounts using Builder Pattern
+        accountFrom = AccountEntity.builder()
+                .uuid(UUID.randomUUID())
+                .IBAN("DE12345678901234567890")
+                .balance(1000.00)
+                .build();
 
-        accountTo = new AccountEntity();
-        accountTo.setUuid(UUID.randomUUID());
-        accountTo.setIBAN("DE09876543210987654321");
-        accountTo.setBalance(500.00);
+        accountTo = AccountEntity.builder()
+                .uuid(UUID.randomUUID())
+                .IBAN("DE09876543210987654321")
+                .balance(500.00)
+                .build();
     }
 
     @Test

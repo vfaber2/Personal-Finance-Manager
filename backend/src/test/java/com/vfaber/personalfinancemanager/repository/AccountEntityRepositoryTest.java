@@ -24,17 +24,19 @@ class AccountEntityRepositoryTest {
     @Test
     void testSaveAccountEntityWithUser() {
         // Arrange
-        UserEntity user = new UserEntity();
-        user.setUsername("testuser");
-        user.setEmail("testuser@example.com");
-        user.setPassword("password123");
+        UserEntity user = UserEntity.builder()
+                .username("testuser")
+                .email("testuser@example.com")
+                .password("password123")
+                .build();
         UserEntity savedUser = userRepository.save(user); // Database generates the ID
 
-        AccountEntity account = new AccountEntity();
-        account.setUuid(UUID.randomUUID());
-        account.setIBAN("DE12345678901234567890");
-        account.setAccountHolder(savedUser);
-        account.setBalance(1000.00);
+        AccountEntity account = AccountEntity.builder()
+                .uuid(UUID.randomUUID())
+                .IBAN("DE12345678901234567890")
+                .accountHolder(savedUser)
+                .balance(1000.00)
+                .build();
 
         // Act
         AccountEntity savedAccount = accountRepository.save(account);
@@ -49,17 +51,19 @@ class AccountEntityRepositoryTest {
     @Test
     void testFindByAccountHolder() {
         // Arrange
-        UserEntity user = new UserEntity();
-        user.setUsername("testuser");
-        user.setEmail("testuser@example.com");
-        user.setPassword("password123");
+        UserEntity user = UserEntity.builder()
+                .username("testuser")
+                .email("testuser@example.com")
+                .password("password123")
+                .build();
         UserEntity savedUser = userRepository.save(user);
 
-        AccountEntity account = new AccountEntity();
-        account.setUuid(UUID.randomUUID());
-        account.setIBAN("DE12345678901234567890");
-        account.setAccountHolder(savedUser);
-        account.setBalance(1000.00);
+        AccountEntity account = AccountEntity.builder()
+                .uuid(UUID.randomUUID())
+                .IBAN("DE12345678901234567890")
+                .accountHolder(savedUser)
+                .balance(1000.00)
+                .build();
         accountRepository.save(account);
 
         // Act
@@ -74,10 +78,11 @@ class AccountEntityRepositoryTest {
     @Test
     void testFindByAccountHolderNotFound() {
         // Arrange
-        UserEntity user = new UserEntity();
-        user.setUsername("nonexistentuser");
-        user.setEmail("nonexistent@example.com");
-        user.setPassword("password123");
+        UserEntity user = UserEntity.builder()
+                .username("nonexistentuser")
+                .email("nonexistent@example.com")
+                .password("password123")
+                .build();
         UserEntity savedUser = userRepository.save(user);
 
         // Act
@@ -90,10 +95,11 @@ class AccountEntityRepositoryTest {
     @Test
     void testFindByIBAN() {
         // Arrange
-        AccountEntity account = new AccountEntity();
-        account.setUuid(UUID.randomUUID());
-        account.setIBAN("DE12345678901234567890");
-        account.setBalance(1000.00);
+        AccountEntity account = AccountEntity.builder()
+                .uuid(UUID.randomUUID())
+                .IBAN("DE12345678901234567890")
+                .balance(1000.00)
+                .build();
         accountRepository.save(account);
 
         // Act

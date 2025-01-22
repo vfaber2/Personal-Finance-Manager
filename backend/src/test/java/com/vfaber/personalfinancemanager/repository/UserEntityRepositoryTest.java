@@ -22,12 +22,13 @@ class UserEntityRepositoryTest {
     @Test
     void testSaveUser() {
         // Arrange
-        UserEntity user = new UserEntity();
-        user.setUsername("test1");
-        user.setPassword("password123");
-        user.setFirstName("testFirstName");
-        user.setLastName("testLastName");
-        user.setEmail("test.email@gmail.com");
+        UserEntity user = UserEntity.builder()
+                .username("test1")
+                .password("password123")
+                .firstName("testFirstName")
+                .lastName("testLastName")
+                .email("test.email@gmail.com")
+                .build();
 
         // Act
         UserEntity savedUser = userRepository.save(user);
@@ -40,19 +41,21 @@ class UserEntityRepositoryTest {
     @Test
     void testUniqueEmailConstraint() {
         // Arrange
-        UserEntity user1 = new UserEntity();
-        user1.setUsername("user1");
-        user1.setPassword("password123");
-        user1.setFirstName("John");
-        user1.setLastName("Doe");
-        user1.setEmail("uniqueTest@gmail.com");
+        UserEntity user1 = UserEntity.builder()
+                .username("user1")
+                .password("password123")
+                .firstName("John")
+                .lastName("Doe")
+                .email("uniqueTest@gmail.com")
+                .build();
 
-        UserEntity user2 = new UserEntity();
-        user2.setUsername("user2");
-        user2.setPassword("password123");
-        user2.setFirstName("Jane");
-        user2.setLastName("Smith");
-        user2.setEmail("uniqueTest@gmail.com"); // Same email as user1
+        UserEntity user2 = UserEntity.builder()
+                .username("user2")
+                .password("password123")
+                .firstName("Jane")
+                .lastName("Smith")
+                .email("uniqueTest@gmail.com") // Same email as user1
+                .build();
 
         // Act
         userRepository.save(user1);
@@ -65,12 +68,13 @@ class UserEntityRepositoryTest {
     @Test
     void testFindById() {
         // Arrange
-        UserEntity user = new UserEntity();
-        user.setUsername("test1");
-        user.setPassword("password123");
-        user.setFirstName("testFirstName");
-        user.setLastName("testLastName");
-        user.setEmail("test.email@gmail.com");
+        UserEntity user = UserEntity.builder()
+                .username("test1")
+                .password("password123")
+                .firstName("testFirstName")
+                .lastName("testLastName")
+                .email("test.email@gmail.com")
+                .build();
         UserEntity savedUser = userRepository.save(user);
 
         // Act
@@ -84,12 +88,13 @@ class UserEntityRepositoryTest {
     @Test
     void testDeleteUser() {
         // Arrange
-        UserEntity user = new UserEntity();
-        user.setUsername("test1");
-        user.setPassword("password123");
-        user.setFirstName("testFirstName");
-        user.setLastName("testLastName");
-        user.setEmail("test.email@gmail.com");
+        UserEntity user = UserEntity.builder()
+                .username("test1")
+                .password("password123")
+                .firstName("testFirstName")
+                .lastName("testLastName")
+                .email("test.email@gmail.com")
+                .build();
         UserEntity savedUser = userRepository.save(user);
 
         // Act
@@ -102,12 +107,13 @@ class UserEntityRepositoryTest {
     @Test
     void testFindByUsername() {
         // Arrange
-        UserEntity user = new UserEntity();
-        user.setUsername("user1");
-        user.setPassword("password123");
-        user.setFirstName("John");
-        user.setLastName("Doe");
-        user.setEmail("john.doe@gmail.com");
+        UserEntity user = UserEntity.builder()
+                .username("user1")
+                .password("password123")
+                .firstName("John")
+                .lastName("Doe")
+                .email("john.doe@gmail.com")
+                .build();
         userRepository.save(user);
 
         // Act
@@ -131,19 +137,21 @@ class UserEntityRepositoryTest {
     @Test
     void testFindAll() {
         // Arrange
-        UserEntity user1 = new UserEntity();
-        user1.setUsername("user1");
-        user1.setPassword("password123");
-        user1.setFirstName("John");
-        user1.setLastName("Doe");
-        user1.setEmail("john.doe@gmail.com");
+        UserEntity user1 = UserEntity.builder()
+                .username("user1")
+                .password("password123")
+                .firstName("John")
+                .lastName("Doe")
+                .email("john.doe@gmail.com")
+                .build();
 
-        UserEntity user2 = new UserEntity();
-        user2.setUsername("user2");
-        user2.setPassword("password456");
-        user2.setFirstName("Jane");
-        user2.setLastName("Smith");
-        user2.setEmail("jane.smith@gmail.com");
+        UserEntity user2 = UserEntity.builder()
+                .username("user2")
+                .password("password456")
+                .firstName("Jane")
+                .lastName("Smith")
+                .email("jane.smith@gmail.com")
+                .build();
 
         userRepository.save(user1);
         userRepository.save(user2);

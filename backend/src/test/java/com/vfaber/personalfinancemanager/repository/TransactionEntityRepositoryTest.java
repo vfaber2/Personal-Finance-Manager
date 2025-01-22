@@ -33,11 +33,12 @@ class TransactionEntityRepositoryTest {
         AccountEntity accountFrom = createAndSaveAccount("userFrom", "DE12345678901234567890");
         AccountEntity accountTo = createAndSaveAccount("userTo", "DE09876543210987654321");
 
-        TransactionEntity transaction = new TransactionEntity();
-        transaction.setTransactionId(UUID.randomUUID());
-        transaction.setAmount(500.00);
-        transaction.setAccountFrom(accountFrom);
-        transaction.setAccountTo(accountTo);
+        TransactionEntity transaction = TransactionEntity.builder()
+                .transactionId(UUID.randomUUID())
+                .amount(500.00)
+                .accountFrom(accountFrom)
+                .accountTo(accountTo)
+                .build();
 
         // Act
         TransactionEntity savedTransaction = transactionRepository.save(transaction);
@@ -133,17 +134,19 @@ class TransactionEntityRepositoryTest {
 
     // Utility Methods
     private AccountEntity createAndSaveAccount(String username, String iban) {
-        UserEntity user = new UserEntity();
-        user.setUsername(username);
-        user.setEmail(username + "@example.com");
-        user.setPassword("password123");
+        UserEntity user = UserEntity.builder()
+                .username(username)
+                .email(username + "@example.com")
+                .password("password123")
+                .build();
         UserEntity savedUser = userRepository.save(user);
 
-        AccountEntity account = new AccountEntity();
-        account.setUuid(UUID.randomUUID());
-        account.setIBAN(iban);
-        account.setBalance(1000.00);
-        account.setAccountHolder(savedUser);
+        AccountEntity account = AccountEntity.builder()
+                .uuid(UUID.randomUUID())
+                .IBAN(iban)
+                .balance(1000.00)
+                .accountHolder(savedUser)
+                .build();
         return accountRepository.save(account);
     }
 
@@ -154,11 +157,12 @@ class TransactionEntityRepositoryTest {
     }
 
     private TransactionEntity saveTransaction(AccountEntity accountFrom, AccountEntity accountTo, double amount) {
-        TransactionEntity transaction = new TransactionEntity();
-        transaction.setTransactionId(UUID.randomUUID());
-        transaction.setAmount(amount);
-        transaction.setAccountFrom(accountFrom);
-        transaction.setAccountTo(accountTo);
+        TransactionEntity transaction = TransactionEntity.builder()
+                .transactionId(UUID.randomUUID())
+                .amount(amount)
+                .accountFrom(accountFrom)
+                .accountTo(accountTo)
+                .build();
         return transactionRepository.save(transaction);
     }
 }
