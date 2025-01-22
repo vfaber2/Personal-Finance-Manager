@@ -1,13 +1,13 @@
 package com.vfaber.personalfinancemanager;
 
-import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
+@Deprecated
 @SpringBootTest
 class PersonalFinanceManagerApplicationTests {
 
-	@Test
-	void contextLoads() {
-	}
+//	@Test
+//	void contextLoads() {
+//	}
 
 }

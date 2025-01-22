@@ -1,11 +1,8 @@
-package com.vfaber.personalfinancemanager.Repository;
+package com.vfaber.personalfinancemanager.repository;
 
 import com.vfaber.personalfinancemanager.entity.AccountEntity;
 import com.vfaber.personalfinancemanager.entity.TransactionEntity;
 import com.vfaber.personalfinancemanager.entity.UserEntity;
-import com.vfaber.personalfinancemanager.repository.AccountRepository;
-import com.vfaber.personalfinancemanager.repository.TransactionRepository;
-import com.vfaber.personalfinancemanager.repository.UserRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
