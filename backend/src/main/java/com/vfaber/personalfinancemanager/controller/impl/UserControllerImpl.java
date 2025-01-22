@@ -34,7 +34,9 @@ public class UserControllerImpl implements UserController {
     @Override
     public ResponseEntity<UserDto> updateUser(@RequestBody UserDto userDto) {
 
-        if (userRepository.findByUsername(userDto.getUsername()).isEmpty()) return ResponseEntity.notFound().build();
+        if (userRepository.findByUsername(userDto.getUsername()).isEmpty()) {
+            return ResponseEntity.notFound().build();
+        }
 
         userRepository.save(mapper.dtoToEntity(userDto));
 
@@ -48,7 +50,7 @@ public class UserControllerImpl implements UserController {
             userRepository.delete(userRepository.findByUsername(username).get());
             return ResponseEntity.ok().build();
         }
-        return ResponseEntity.status(404).build();
+        return ResponseEntity.notFound().build();
     }
 
     @GetMapping("/getUser/{username}")

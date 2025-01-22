@@ -9,7 +9,7 @@ public interface AccountController {
 
     ResponseEntity<AccountDto> addAccount(AccountDto accountDto);
 
-    ResponseEntity<AccountDto> updateAccount(String IBAN);
+    ResponseEntity<AccountDto> updateAccount(AccountDto accountDto);
 
     ResponseEntity<AccountDto> deleteAccount(String IBAN);
 
