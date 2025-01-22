@@ -2,9 +2,11 @@ package com.vfaber.personalfinancemanager.controller.impl;
 
 import com.vfaber.personalfinancemanager.controller.TransactionController;
 import com.vfaber.personalfinancemanager.dto.TransactionDto;
+import com.vfaber.personalfinancemanager.dto.TransferRequestDto;
 import com.vfaber.personalfinancemanager.exceptions.TransactionNotFoundException;
 import com.vfaber.personalfinancemanager.repository.TransactionRepository;
 import com.vfaber.personalfinancemanager.service.Mapper;
+import com.vfaber.personalfinancemanager.service.TransferService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -14,11 +16,12 @@ import java.util.List;
 import java.util.UUID;
 
 @RestController
-@RequestMapping("/api/account")
+@RequestMapping("/api/transaction")
 @RequiredArgsConstructor
 public class TransactionControllerImpl implements TransactionController {
 
     private final TransactionRepository transactionRepository;
+    private final TransferService transferService;
     private final Mapper mapper = new Mapper();
 
 
@@ -73,5 +76,11 @@ public class TransactionControllerImpl implements TransactionController {
                 .map(mapper::entityToDto)
                 .forEach(transactionDtos::add);
         return ResponseEntity.ok().body(transactionDtos);
+    }
+
+    @PostMapping("/performTransaction")
+    public ResponseEntity<TransactionDto> performTransaction(@RequestBody TransferRequestDto transferRequest) {
+        transferService.transfer(transferRequest.getAccountFromId(), transferRequest.getAccountToId(), transferRequest.getAmount());
+        return ResponseEntity.ok().build();
     }
 }
